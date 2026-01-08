@@ -16,6 +16,7 @@
             <a class="header__logo" href="/">
                 COACHTECH
             </a>
+            @yield('header')
         </div>
     </header>
 

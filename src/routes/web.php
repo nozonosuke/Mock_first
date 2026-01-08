@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/mypage/profile', function() {
+    return view('mypage.profile');
+})->middleware(['auth']);
+
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('products.index');
+})->middleware(['auth']);

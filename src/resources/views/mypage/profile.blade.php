@@ -1,17 +1,16 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/register.css') }}">
+<link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 @endsection
 
-
 @section('content')
-<div class="register-form__content">
-    <div class="register-form__heading">
-        <h1>会員登録</h1>
+<div class="profile-form__content">
+    <div class="profile-form__heading">
+        <h1>プロフィール設定</h1>
     </div>
 
-    <form action="/register" class="form" method="post">
+    <form action="/mypage" class="form" method="post">
         @csrf
         <div class="form__group">
             <div class="form__group-title">
@@ -22,26 +21,27 @@
                         {{ $message }}
                         @enderror
                     </div>
-                <label>メールアドレス</label>
-                <input type="email" name="email" value="{{ old('email') }}" />
+
+                <label>郵便番号</label>
+                <input type="text" name="address" value="{{ old('address') }}" />
                     <div class="form__error">
-                        @error('email')
+                        @error('password')
                         {{ $message }}
                         @enderror
                     </div>
                 
-                <label>パスワード</label>
-                <input type="password" name="password" />
+                <label>住所</label>
+                <input type="password" name="password" value="{{ old('password') }}" />
                     <div class="form__error">
                         @error('password')
                         {{ $message }}
                         @enderror
                     </div>
 
-                <label>確認用パスワード</label>
-                <input type="password" name="password_confirmation" />
+                <label>建物名</label>
+                <input type="password" name="password" value="{{ old('password') }}" />
                     <div class="form__error">
-                        @error('password_confirmation')
+                        @error('password')
                         {{ $message }}
                         @enderror
                     </div>
@@ -49,11 +49,7 @@
         </div>
 
         <div class="form__button">
-            <button class="form__button-register" type="submit">登録する</button>
-        </div>
-
-        <div class="form__login">
-            <a href="/login">ログインはこちら</a>
+            <button class="form__button-login" type="submit">ログインする</button>
         </div>
     </form>
 </div>

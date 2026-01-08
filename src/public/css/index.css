@@ -1,0 +1,70 @@
+/* ヘッダー中央（検索ボックス） */
+.header__center {
+    flex: 1;
+    max-width: 500px;
+    margin: 0 20px;
+}
+
+.header__search {
+    width: 100%;
+}
+
+.header__search input {
+    width: 100%;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.header__search input::placeholder {
+    color: #999;
+}
+
+/* ヘッダー右側 */
+.header__right {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.header__nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.header__nav-link:hover {
+    text-decoration: underline;
+}
+
+/* 出品ボタン */
+.header__nav-button {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #fff;
+    padding: 6px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.header__nav-button:hover {
+    background-color: #e0e0e0;
+}
+
+/* ログアウトボタンをリンク風に */
+.header__nav-link--button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.header__nav-link--button:hover {
+    text-decoration: underline;
+}
