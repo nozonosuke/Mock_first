@@ -22,5 +22,28 @@
 @endsection
 
 @section('content')
+<div class="items">
+    <div class="items__tabs">
+        <span class="tab tab--active">おすすめ</span>
+        <span class="tab">マイリスト</span>
+    </div>
+
+    <div class="items__list">
+        @foreach ($items as $item)
+            <a href="{{ route('item.show', $item->id) }}" class="item-card">
+                <div class="item-card__image">
+                    @if ($item->image_url)
+                        <img src="{{ asset('storage/' . $item->image_url) }}" alt="商品画像 : {{ $item->name }}">
+                    @else
+                        <div class="item-card__image--dummy"></div>
+                    @endif
+                </div>
+
+                <p class="item-card__name">{{ $item->name }}</p>
+            </a>
+        @endforeach
+    </div>
+    
+</div>
 
 @endsection

@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\MypageController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +25,17 @@ Route::get('/mypage/profile', function() {
 Route::get('/', function () {
     return view('products.index');
 })->middleware(['auth']);
+
+Route::get('/', [ItemController::class, 'index'])->middleware('auth');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/mypage', [MypageController::class, 'index']);
+    Route::get('/mypage/profile', [MypageController::class, 'editProfile']);
+    Route::post('/mypage/profile', [MypageController::class, 'updateProfile']);
+});
+
+Route::get('/item/{item}', [ItemController::class, 'show'])->name('item.show');
+
+Route::post('/item/{item}/comment', [CommentController::class, 'store'])->middleware('auth')->name('comment.store');
+
+Route::post('/item/{item}/favorite', [FavoriteController::class, 'toggle'])->middleware('auth')->name('item.favorite');

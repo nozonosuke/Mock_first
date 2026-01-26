@@ -1,0 +1,160 @@
+/* header__inner を横並びにする前提 */
+.header__inner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* ロゴ（左）は common.css 側でOK */
+
+/* 中央：検索ボックス */
+.header__center {
+    flex: 1;
+    max-width: 500px;
+}
+
+.header__search input {
+    width: 100%;
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: none;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* 右側：ナビゲーション */
+.header__right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* ログアウト（リンク風ボタン） */
+.header__nav-link {
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.header__nav-link:hover {
+    text-decoration: underline;
+}
+
+/* 出品ボタン */
+.header__nav-button {
+    background-color: #fff;
+    color: #000;
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* =========================
+   全体
+========================= */
+.profile-form__content {
+    max-width: 600px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+/* 見出し */
+.profile-form__heading h1 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* =========================
+   プロフィール画像
+========================= */
+.profile-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.profile-image__preview {
+    width: 120px;
+    height: 120px;
+}
+
+.profile-image__preview img,
+.profile-image__dummy {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #ddd;
+    object-fit: cover;
+}
+
+/* 画像選択ボタン */
+.profile-image__button {
+    display: inline-block;
+    padding: 6px 16px;
+    border: 1px solid #ff6b6b;
+    border-radius: 20px;
+    color: #ff6b6b;
+    font-size: 14px;
+    cursor: pointer;
+    background: #fff;
+}
+
+/* =========================
+   フォーム
+========================= */
+.form__group-title {
+    text-align: left;
+}
+
+.form__group-title label {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 6px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.form__group-title input {
+    width: 100%;
+    height: 40px;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* =========================
+   ボタン
+========================= */
+.form__button {
+    margin-top: 40px;
+}
+
+.form__button-login {
+    width: 100%;
+    height: 45px;
+    background-color: #ff6b6b;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* =========================
+   エラー
+========================= */
+.form__error {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+}
