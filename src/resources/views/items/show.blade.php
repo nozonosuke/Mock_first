@@ -56,9 +56,16 @@
 
 
         {{-- 購入ボタン --}}
-        <a href="#" class="item-detail__buy">
-            購入手続きへ
-        </a>
+        @auth
+            <a href="{{ route('purchase.purchase', $item) }}"
+            class="item-detail__buy">
+                購入手続きへ
+            </a>
+        @else
+            <a href="{{ route('login') }}" class="item-detail__buy">
+                ログインして購入
+            </a>
+        @endauth
 
         {{-- 商品説明 --}}
         <div class="item-detail__section">
