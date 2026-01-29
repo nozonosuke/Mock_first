@@ -132,3 +132,19 @@
 .item-card:hover {
     opacity: 0.9;
 }
+
+.item-card__image {
+    position: relative;
+}
+
+.item-card__sold {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(255, 0, 0, 0.8);
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}

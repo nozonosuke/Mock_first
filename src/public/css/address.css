@@ -1,0 +1,56 @@
+/* 全体 */
+.address-container {
+    max-width: 600px;
+    margin: 60px auto;
+    text-align: center;
+}
+
+/* タイトル */
+.address-title {
+    font-size: 22px;
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+/* フォーム */
+.address-form {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+/* 入力グループ */
+.address-form__group {
+    text-align: left;
+}
+
+.address-form__group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.address-form__group input {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* 更新ボタン */
+.address-submit {
+    margin-top: 20px;
+    padding: 14px;
+    background-color: #ff5f5f;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.address-submit:hover {
+    opacity: 0.9;
+}

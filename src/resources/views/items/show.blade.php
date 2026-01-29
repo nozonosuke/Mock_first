@@ -97,18 +97,30 @@
             {{-- コメント一覧 --}}
             @forelse ($item->comments as $comment)
                 <div class="comment">
-                    <div class="comment__user">
-                        {{ $comment->user->name }}
+                    <div class="comment__header">
+                        <div class="comment__avatar">
+                            @if ($comment->user->profile_image)
+                                <img src="{{ asset('storage/' . $comment->user->profile_image) }}" alt="プロフィール画像">
+                            @else
+                                <div class="comment__avatar--dummy"></div>
+                            @endif
+                        </div>
+
+                        <div class="comment__user">
+                            {{ $comment->user->name }}
+                        </div>
                     </div>
+
                     <div class="comment__body">
                         {{ $comment->comment }}
                     </div>
                 </div>
+
             @empty
                 <p>まだコメントはありません</p>
             @endforelse
 
-            {{-- コメント投稿（※次のステップで実装） --}}
+            {{-- コメント投稿 --}}
             <form action="{{ route('comment.store', $item->id) }}" method="post">
                 @csrf
 

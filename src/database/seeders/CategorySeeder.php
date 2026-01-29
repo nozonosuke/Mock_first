@@ -17,9 +17,18 @@ class CategorySeeder extends Seeder
         $categories = [
             'ファッション',
             '家電',
-            '食品',
+            'インテリア',
+            'レディース',
+            'メンズ',
+            'コスメ',
+            '本',
+            'ゲーム',
+            'スポーツ',
             'キッチン',
-            'コスメ・美容',
+            'ハンドメイド',
+            'アクセサリー',
+            'おもちゃ',
+            'ベビー・キッズ',
         ];
 
         foreach ($categories as $category) {

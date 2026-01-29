@@ -23,11 +23,7 @@ Route::get('/mypage/profile', function() {
     return view('mypage.profile');
 })->middleware(['auth']);
 
-Route::get('/', function () {
-    return view('products.index');
-})->middleware(['auth']);
-
-Route::get('/', [ItemController::class, 'index'])->middleware('auth');
+Route::get('/', [ItemController::class, 'index'])->name('products.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/mypage', [MypageController::class, 'index'])
@@ -46,6 +42,15 @@ Route::middleware('auth')->group(function () {
 
     Route::post('purchase/address/{item}', [PurchaseController::class, 'updateAddress'])
         ->name('purchase.address.update');
+
+    Route::post('/purchase/{item}', [PurchaseController::class, 'store'])
+        ->name('purchase.store');
+
+    Route::get('/sell', [ItemController::class, 'create'])
+        ->name('item.create');
+
+    Route::post('/sell', [ItemController::class, 'store'])
+        ->name('item.store');
 });
 
 Route::get('/item/{item}', [ItemController::class, 'show'])->name('item.show');

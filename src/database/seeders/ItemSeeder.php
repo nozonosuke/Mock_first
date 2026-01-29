@@ -21,11 +21,20 @@ class ItemSeeder extends Seeder
         $userId = User::firstOrFail()->id;
 
         /**カテゴリID取得 */
-        $fashion = Category::where('content', 'ファッション')->first()->id;
-        $electronics = Category::where('content', '家電')->first()->id;
-        $food = Category::where('content', '食品')->first()->id;
-        $kitchen = Category::where('content', 'キッチン')->first()->id;
-        $cosme = Category::where('content', 'コスメ・美容')->first()->id;
+        $fashion = Category::where('content', 'ファッション')->firstOrFail()->id;
+        $electronics = Category::where('content', '家電')->firstOrFail()->id;
+        $interior = Category::where('content', 'インテリア')->firstOrFail()->id;
+        $ladies = Category::where('content', 'レディース')->firstOrFail()->id;
+        $mens = Category::where('content', 'メンズ')->firstOrFail()->id;
+        $cosme = Category::where('content', 'コスメ')->firstOrFail()->id;
+        $books = Category::where('content', '本')->firstOrFail()->id;
+        $games = Category::where('content', 'ゲーム')->firstOrFail()->id;
+        $sports = Category::where('content', 'スポーツ')->firstOrFail()->id;
+        $kitchen = Category::where('content', 'キッチン')->firstOrFail()->id;
+        $handmade = Category::where('content', 'ハンドメイド')->firstOrFail()->id;
+        $accessories = Category::where('content', 'アクセサリー')->firstOrFail()->id;
+        $toys = Category::where('content', 'おもちゃ')->firstOrFail()->id;
+        $babygoods = Category::where('content', 'ベビー・キッズ')->firstOrFail()->id;
 
         $items = [
             [
@@ -62,7 +71,7 @@ class ItemSeeder extends Seeder
                     'image_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/iLoveIMG+d.jpg',
                     'condition' => 'やや傷や汚れあり',
                 ],
-                'categories' => [$food],
+                'categories' => [$kitchen],
             ],
 
             [
@@ -74,7 +83,7 @@ class ItemSeeder extends Seeder
                     'image_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Leather+Shoes+Product+Photo.jpg',
                     'condition' => '状態が悪い',
                 ],
-                'categories' => [$fashion],
+                'categories' => [$fashion, $mens],
             ],
 
             [
@@ -86,7 +95,7 @@ class ItemSeeder extends Seeder
                     'image_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Living+Room+Laptop.jpg',
                     'condition' => '良好',
                 ],
-                'categories' => [$electronics, $fashion],
+                'categories' => [$electronics],
             ],
 
             [
@@ -110,7 +119,7 @@ class ItemSeeder extends Seeder
                     'image_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Purse+fashion+pocket.jpg',
                     'condition' => 'やや傷や汚れあり',
                 ],
-                'categories' => [$fashion],
+                'categories' => [$fashion, $ladies],
             ],
 
             [
@@ -122,7 +131,7 @@ class ItemSeeder extends Seeder
                     'image_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Tumbler+souvenir.jpg',
                     'condition' => '状態が悪い',
                 ],
-                'categories' => [$kitchen, $fashion],
+                'categories' => [$kitchen, $sports],
             ],
 
             [
@@ -134,7 +143,7 @@ class ItemSeeder extends Seeder
                     'image_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Waitress+with+Coffee+Grinder.jpg',
                     'condition' => '良好',
                 ],
-                'categories' => [$kitchen, $food],
+                'categories' => [$kitchen],
             ],
 
             [

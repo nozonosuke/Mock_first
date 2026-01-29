@@ -47,15 +47,11 @@
                 <a href="{{ route('purchase.address.edit', $item) }}">変更する</a>
             </h3>
 
-            @if ($user->address)
+            @if ($address)
                 <p>
-                    〒 {{ $user->address->postal_code }}<br>
-                    {{ $user->address->address }}<br>
-                    {{ $user->address->building_name }}
-                </p>
-            @else
-                <p class="error">
-                    配送先が登録されていません。
+                    〒 {{ $address['postal_code'] ?? $address->postal_code }}<br>
+                    {{ $address['address'] ?? $address->address }}<br>
+                    {{ $address['building_name'] ?? $address->building_name }}
                 </p>
             @endif
         </div>
@@ -78,9 +74,10 @@
 
         </div>
 
-        <button class="purchase-submit">
-            購入する
-        </button>
+        <form action="{{ route('purchase.store', $item) }}" method="post">
+            @csrf
+            <button class="purchase-submit">購入する</button>
+        </form>
     </div>
 
 </div>
