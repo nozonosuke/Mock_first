@@ -46,6 +46,10 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.login');
         });
 
+        Fortify::verifyEmailView(function () {
+            return view('auth.verify-email');
+        });
+
         Fortify::authenticateUsing(function (Request $request) {
 
             // ① 未入力・形式エラー（LoginRequest）
@@ -68,11 +72,11 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(10)->by($email . $request->ip());
         });
 
-        // 会員登録後のリダイレクト先
-        $this->app->instance(RegisterResponse::class, new class     implements RegisterResponse {
+        // 会員登録後のリダイレクト先(メール認証画面へ)
+        $this->app->instance(RegisterResponse::class, new class implements RegisterResponse {
             public function toResponse($request)
             {
-                return redirect('/mypage/profile');
+                return redirect('/email/verify');
             }
         });
 

@@ -18,7 +18,11 @@ class CreatePurchasesTable extends Migration
             // 購入者
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             // 購入された商品
-            $table->foreignId('item_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('item_id')
+            ->constrained()
+            ->cascadeOnDelete()
+            ->unique();
+
             // 購入時の価格
             $table->integer('price_at_purchase');
             // 配送先住所

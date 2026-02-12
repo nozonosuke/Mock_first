@@ -12,24 +12,42 @@ class ItemController extends Controller
 {
     public function index(Request $request)
     {
-        /**商品一覧取得 */
+        /** 商品一覧取得 */
         $query = Item::with(['categories', 'purchase'])->latest();
 
+        // キーワード検索
         if ($request->filled('keyword')) {
             $query->where('name', 'like', '%' . $request->keyword . '%');
         }
 
-        // ⭐ マイリスト表示（/?tab=mylist）
-        if ($request->get('tab') === 'mylist' && auth()->check()) {
+        // ⭐ マイリストタブ
+        if ($request->get('tab') === 'mylist') {
+
+            // 🔐 未認証 → 何も表示しない
+            if (!auth()->check()) {
+                $items = collect(); // 空のコレクション
+                return view('products.index', compact('items'));
+            }
+
+            // ✅ 認証済み → マイリストのみ表示
             $query->whereHas('favorites', function ($q) {
                 $q->where('user_id', auth()->id());
             });
+
+        } else {
+            // ⭐ おすすめタブ（通常一覧）
+
+            // 自分が出品した商品は除外（ログイン時）
+            if (auth()->check()) {
+                $query->where('user_id', '!=', auth()->id());
+            }
         }
 
         $items = $query->get();
 
         return view('products.index', compact('items'));
     }
+
 
     public function show(Item $item)
     {

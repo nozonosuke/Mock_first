@@ -19,13 +19,20 @@ use App\Http\Controllers\PurchaseController;
 |
 */
 
-Route::get('/mypage/profile', function() {
-    return view('mypage.profile');
-})->middleware(['auth']);
-
 Route::get('/', [ItemController::class, 'index'])->name('products.index');
+Route::get('/item/{item}', [ItemController::class, 'show'])->name('item.show');
 
 Route::middleware('auth')->group(function () {
+    
+    
+    Route::post('/item/{item}/comment', [CommentController::class, 'store'])
+        ->name('comment.store');
+    
+    Route::post('/item/{item}/favorite', [FavoriteController::class, 'toggle'])
+        ->name('item.favorite');
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/mypage', [MypageController::class, 'index'])
         ->name('mypage.index');
 
@@ -35,7 +42,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/mypage/profile', [MypageController::class, 'updateProfile'])
         ->name('mypage.profile.update');
 
-    Route::get('/purchase/{item}', [PurchaseController::class, 'show'])->name('purchase.purchase');
+    Route::get('/sell', [ItemController::class, 'create'])
+        ->name('item.create');
+
+    Route::post('/sell', [ItemController::class, 'store'])
+        ->name('item.store');
+
+    Route::get('/purchase/{item}', [PurchaseController::class, 'show'])
+        ->name('purchase.purchase');
 
     Route::get('/purchase/address/{item}', [PurchaseController::class, 'editAddress'])
         ->name('purchase.address.edit');
@@ -45,17 +59,11 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/purchase/{item}', [PurchaseController::class, 'store'])
         ->name('purchase.store');
-
-    Route::get('/sell', [ItemController::class, 'create'])
-        ->name('item.create');
-
-    Route::post('/sell', [ItemController::class, 'store'])
-        ->name('item.store');
 });
 
-Route::get('/item/{item}', [ItemController::class, 'show'])->name('item.show');
 
-Route::post('/item/{item}/comment', [CommentController::class, 'store'])->middleware('auth')->name('comment.store');
 
-Route::post('/item/{item}/favorite', [FavoriteController::class, 'toggle'])->middleware('auth')->name('item.favorite');
+
+
+
 

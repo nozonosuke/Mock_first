@@ -147,7 +147,7 @@ return [
     'features' => [
         Features::registration(),
         Features::resetPasswords(),
-        // Features::emailVerification(),
+        Features::emailVerification(),
         Features::updateProfileInformation(),
         Features::updatePasswords(),
         Features::twoFactorAuthentication([
@@ -156,4 +156,8 @@ return [
             // 'window' => 0,
         ]),
     ],
+
+    'redirects' => [
+        'register' => '/email/verify',
+    ]
 ];

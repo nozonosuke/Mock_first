@@ -29,12 +29,12 @@
 @section('content')
 <div class="items">
     <div class="items__tabs">
-        <a href="{{ route('products.index') }}"
+        <a href="{{ route('products.index', request()->except('tab')) }}"
         class="tab {{ request('tab') !== 'mylist' ? 'tab--active' : '' }}">
             おすすめ
         </a>
 
-        <a href="{{ route('products.index', ['tab' => 'mylist']) }}"
+        <a href="{{ route('products.index', array_merge(request()->except('tab'), ['tab' => 'mylist'])) }}"
         class="tab {{ request('tab') === 'mylist' ? 'tab--active' : '' }}">
             マイリスト
         </a>
