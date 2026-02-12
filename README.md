@@ -26,7 +26,7 @@ Laravelを用いて作成したフリマアプリです。
 
 ## ER図
 
-![ER Diagram](docs/er_diagram.svg)
+![ER Diagram](docs/er_diagram.png)
 
 ---
 
