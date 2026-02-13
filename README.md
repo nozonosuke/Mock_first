@@ -119,6 +119,14 @@ mock_first/
 - メールアドレス：test@example.com
 - パスワード：password
 
+## 単体テスト実行方法
+
+Dockerコンテナ内で以下を実行してください。
+
+```bash
+docker-compose exec php bash
+php artisan test
+```
 ---
 
 ## 主な設計ポイント
