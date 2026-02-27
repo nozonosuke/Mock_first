@@ -77,6 +77,6 @@ class MylistTest extends TestCase
         $response->assertStatus(200);
 
         // 商品名が表示されないことを確認
-        $response->assertDontSee($item->name);
+        $response->assertDontSeeText($item->name);
     }
 }
