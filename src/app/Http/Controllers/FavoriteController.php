@@ -12,13 +12,16 @@ class FavoriteController extends Controller
     {
         $user = Auth::user();
 
-        if ($item->favoredUsers()->where('user_id', $user->id)->exists()) {
-            // 解除
+        $isFavorited = $item->favoredUsers()
+            ->where('user_id', $user->id)
+            ->exists();
+
+        if ($isFavorited) {
             $item->favoredUsers()->detach($user->id);
-        } else {
-            // 追加
-            $item->favoredUsers()->attach($user->id);
+            return back();
         }
+
+        $item->favoredUsers()->attach($user->id);
 
         return back();
     }

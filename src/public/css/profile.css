@@ -1,16 +1,22 @@
-/* header__inner を横並びにする前提 */
+.header {
+    position: relative;
+}
+
 .header__inner {
     display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: space-between;
+    height: 50px;
 }
-
-/* ロゴ（左）は common.css 側でOK */
 
 /* 中央：検索ボックス */
 .header__center {
-    flex: 1;
-    max-width: 500px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    max-width: 40%;
+    margin-top: 10px;
 }
 
 .header__search input {
@@ -42,6 +48,13 @@
 
 .header__nav-link:hover {
     text-decoration: underline;
+}
+
+.header__nav-link--button {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-top: 15px;
 }
 
 /* 出品ボタン */
@@ -87,12 +100,18 @@
 }
 
 .profile-image__preview img,
+.profile-image__preview-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 .profile-image__dummy {
     width: 120px;
     height: 120px;
     border-radius: 50%;
     background-color: #ddd;
-    object-fit: cover;
 }
 
 /* 画像選択ボタン */

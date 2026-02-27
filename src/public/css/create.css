@@ -1,3 +1,71 @@
+.header {
+    position: relative;
+}
+
+.header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+}
+
+/* 中央：検索ボックス */
+.header__center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    max-width: 40%;
+    margin-top: 10px;
+}
+
+.header__search input {
+    width: 100%;
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: none;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* 右側：ナビゲーション */
+.header__right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* ログアウト（リンク風ボタン） */
+.header__nav-link {
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.header__nav-link:hover {
+    text-decoration: underline;
+}
+
+.header__nav-link--button {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+/* 出品ボタン */
+.header__nav-button {
+    background-color: #fff;
+    color: #000;
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
 /* 全体 */
 .sell-container {
     max-width: 800px;
@@ -33,6 +101,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .image-upload input[type="file"] {
@@ -47,6 +116,7 @@
     background: #fff;
     cursor: pointer;
     font-weight: bold;
+    position: static;
 }
 
 /* ========= カテゴリ ========= */
@@ -79,6 +149,9 @@
     width: 100%;
     padding: 10px;
     font-size: 14px;
+    background-color: #eee;
+    border: 1px solid #999;
+    border-radius: 4px;
 }
 
 /* ========= 入力欄 ========= */
@@ -130,11 +203,15 @@
     cursor: pointer;
 }
 
-.image-upload {
-    position: relative;
+.error-text {
+    color: #ff5f5f;
+    font-size: 13px;
+    margin-top: 6px;
 }
 
-.image-upload__button {
-    position: absolute;
-    bottom: 20px;
+.image-preview {
+    display: none;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }

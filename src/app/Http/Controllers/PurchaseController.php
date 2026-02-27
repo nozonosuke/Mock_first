@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Item;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Purchase;
 use App\Models\Address;
+use App\Http\Requests\PurchaseRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 class PurchaseController extends Controller
@@ -50,36 +51,46 @@ class PurchaseController extends Controller
         return redirect()->route('purchase.purchase', $item);
     }
 
-    public function store(Request $request, Item $item)
+    public function store(PurchaseRequest $request, Item $item)
     {
         $user = Auth::user();
 
-        // 配送先（セッション or ユーザー住所）
         $addressData = session('purchase_address');
 
         if ($addressData) {
-            // 購入専用の配送先を作成
-            $address = Address::create([
-                'user_id' => $user->id,
-                'postal_code' => $addressData['postal_code'],
-                'address' => $addressData['address'],
-                'building_name' => $addressData['building_name'],
-            ]);
+            $address = Address::updateOrCreate(
+                ['user_id' => $user->id],
+                [
+                    'postal_code'    => $addressData['postal_code'],
+                    'address'        => $addressData['address'],
+                    'building_name'  => $addressData['building_name'],
+                ]
+            );
         } else {
+
             $address = $user->address;
         }
 
-        // 購入データ作成
+        if (!$address) {
+            $address = Address::updateOrCreate(
+                ['user_id' => $user->id],
+                [
+                    'postal_code' => '0000000',
+                    'address' => '未設定',
+                    'building_name' => null,
+                ]
+            );
+        }
+
         Purchase::create([
-            'user_id' => $user->id,
-            'item_id' => $item->id,
-            'price_at_purchase' => $item->price,
+            'user_id'             => $user->id,
+            'item_id'             => $item->id,
+            'price_at_purchase'   => $item->price,
             'shipping_address_id' => $address->id,
-            'status' => 'purchased',
-            'purchased_at' => Carbon::now(),
+            'status'              => 'purchased',
+            'purchased_at'        => Carbon::now(),
         ]);
 
-        // セッション削除
         session()->forget('purchase_address');
 
         return redirect()->route('products.index')->with('success', '購入が完了しました');

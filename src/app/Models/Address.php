@@ -17,7 +17,6 @@ class Address extends Model
         'building_name',
     ];
 
-    // ユーザーとのリレーション（逆）
     public function user()
     {
         return $this->belongsTo(User::class);

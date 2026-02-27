@@ -38,20 +38,21 @@
         <div class="profile-image">
             <div class="profile-image__preview">
                 @if ($user->profile_image)
-                    <img src="{{ asset('storage/' . $user->profile_image) }}" alt="プロフィール画像">
+                    <img class="profile-image__preview-img"
+                        src="{{ asset('storage/' . $user->profile_image) }}"
+                        alt="プロフィール画像">
                 @else
-                    <div id="preview-image" class="profile-image__dummy"></div>
+                    <div class="profile-image__dummy profile-image__preview-target"></div>
                 @endif
             </div>
 
             <label class="profile-image__button">
                 画像を選択する
-                <input type="file" name="profile_image" id="profile-image-input" hidden>
+                <input type="file"
+                    name="profile_image"
+                    class="profile-image__input"
+                    hidden>
             </label>
-
-            @error('profile_image')
-                <div class="form__error">{{ $message }}</div>
-            @enderror
         </div>
 
         <div class="form__group">
@@ -102,30 +103,20 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
-    const input = document.getElementById('profile-image-input');
-    const preview = document.getElementById('preview-image');
+    const input = document.querySelector('.profile-image__input');
+    const previewTarget = document.querySelector('.profile-image__preview-target');
 
-    if (!input || !preview) return;
+    if (!input || !previewTarget) return;
 
     input.addEventListener('change', function (e) {
         const file = e.target.files[0];
         if (!file) return;
 
-        // img要素に変換
-        let img;
-        if (preview.tagName !== 'IMG') {
-            img = document.createElement('img');
-            img.id = 'preview-image';
-            img.style.width = '120px';
-            img.style.height = '120px';
-            img.style.borderRadius = '50%';
-            img.style.objectFit = 'cover';
-            preview.replaceWith(img);
-        } else {
-            img = preview;
-        }
-
+        const img = document.createElement('img');
+        img.classList.add('profile-image__preview-img');
         img.src = URL.createObjectURL(file);
+
+        previewTarget.replaceWith(img);
     });
 });
 </script>

@@ -9,7 +9,7 @@
 
     <h1 class="address-title">住所の変更</h1>
 
-    <form class="address-form" method="post">
+    <form class="address-form" method="post" action="{{ route('purchase.address.update', $item) }}">
         @csrf
 
         {{-- 郵便番号 --}}
@@ -19,7 +19,11 @@
                 type="text"
                 id="postal_code"
                 name="postal_code"
+                value="{{ old('postal_code', $address->postal_code ?? '') }}"
             >
+            @error('postal_code')
+                <p class="error-text">{{ $message }}</p>
+            @enderror
         </div>
 
         {{-- 住所 --}}
@@ -29,7 +33,11 @@
                 type="text"
                 id="address"
                 name="address"
+                value="{{ old('address', $address->address ?? '') }}"
             >
+            @error('address')
+                <p class="error-text">{{ $message }}</p>
+            @enderror
         </div>
 
         {{-- 建物名 --}}
@@ -39,6 +47,7 @@
                 type="text"
                 id="building_name"
                 name="building_name"
+                value="{{ old('building_name', $address->building_name ?? '') }}"
             >
         </div>
 

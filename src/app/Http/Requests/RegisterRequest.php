@@ -27,7 +27,7 @@ class RegisterRequest extends FormRequest
             'name' => ['required'],
             'email' => ['required', 'email'],
             'password' => ['required', 'min:8',],
-            'password_confirmation' => ['required', 'min:8', 'same:password'],
+            'password_confirmation' => ['required', 'same:password'],
         ];
     }
 

@@ -11,27 +11,27 @@
         <h1>会員登録</h1>
     </div>
 
-    <form action="/register" class="form" method="post">
+    <form action="/register" class="form" method="post" novalidate>
         @csrf
         <div class="form__group">
             <div class="form__group-title">
-                <label>ユーザー名</label>
-                <input type="text" name="name" value="{{ old('name') }}" />
+                <label for="name">ユーザー名</label>
+                <input id="name" type="text" name="name" value="{{ old('name') }}" />
                     <div class="form__error">
                         @error('name')
                         {{ $message }}
                         @enderror
                     </div>
-                <label>メールアドレス</label>
-                <input type="email" name="email" value="{{ old('email') }}" />
+                <label for="email">メールアドレス</label>
+                <input id="email" type="email" name="email" value="{{ old('email') }}" />
                     <div class="form__error">
                         @error('email')
                         {{ $message }}
                         @enderror
                     </div>
                 
-                <label>パスワード</label>
-                <input type="password" name="password" />
+                <label for="password">パスワード</label>
+                <input id="password" type="password" name="password" />
                     <div class="form__error">
                         @error('password')
                         {{ $message }}

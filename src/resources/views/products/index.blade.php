@@ -13,7 +13,7 @@
 
 <div class="header__right">
     @auth
-        <form action="/logout" method="post" style="display: inline;">
+        <form action="/logout" method="post" class="header__logout-form">
             @csrf
             <button class="header__nav-link header__nav-link--button">ログアウト</button>
         </form>

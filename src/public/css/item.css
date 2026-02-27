@@ -1,29 +1,94 @@
+.header {
+    position: relative;
+}
+
+.header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+}
+
+/* 中央：検索ボックス */
+.header__center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    max-width: 40%;
+}
+
+.header__search input {
+    width: 100%;
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: none;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* 右側：ナビゲーション */
+.header__right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+/* ログアウト（リンク風ボタン） */
+.header__nav-link {
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.header__nav-link:hover {
+    text-decoration: underline;
+}
+
+.header__nav-link--button {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+/* 出品ボタン */
+.header__nav-button {
+    background-color: #fff;
+    color: #000;
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
 .item-detail {
     max-width: 1200px;
     margin: 40px auto;
-    display: flex;
+    display: grid;
+    grid-template-columns: 500px 1fr;
     gap: 60px;
+    align-items: start;
 }
 
-/* 左 */
-/* 左：画像枠 */
 .item-detail__image {
     width: 500px;
-    aspect-ratio: 1 / 1;
+    height: 500px;
     background: #eee;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* 画像あり */
 .item-detail__image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-/* 画像なし */
 .item-detail__image--dummy {
     width: 100%;
     height: 100%;
@@ -33,30 +98,33 @@
     justify-content: center;
 }
 
-/* 右 */
-.item-detail__info {
-    flex: 1;
-}
-
 .item-detail__name {
     font-size: 24px;
     font-weight: bold;
 }
 
 .item-detail__price {
-    font-size: 22px;
-    margin: 10px 0;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+.item-detail__icons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .item-detail__buy {
     display: block;
-    margin: 20px 0;
-    padding: 12px;
+    padding: 14px;
     background: #ff5f5f;
     color: #fff;
     text-align: center;
     border-radius: 4px;
     text-decoration: none;
+    font-weight: bold;
 }
 
 .item-detail__section {
@@ -83,12 +151,31 @@
     color: red;
 }
 
+.item-detail__meta {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    row-gap: 16px;
+    column-gap: 20px;
+    align-items: center;
+}
+
 /* コメント全体 */
 .comment {
     margin-top: 16px;
 }
 
-/* 上段（アイコン＋名前） */
+.comment__textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
 .comment__header {
     display: flex;
     align-items: center;
@@ -96,7 +183,6 @@
     margin-bottom: 6px;
 }
 
-/* プロフィール画像 */
 .comment__avatar {
     width: 40px;
     height: 40px;
@@ -112,7 +198,6 @@
     object-fit: cover;
 }
 
-/* 画像なし用 */
 .comment__avatar--dummy {
     width: 100%;
     height: 100%;
@@ -120,16 +205,37 @@
     border-radius: 50%;
 }
 
-/* ユーザー名 */
 .comment__user {
     font-weight: bold;
     font-size: 14px;
 }
 
-/* コメント本文 */
 .comment__body {
-    background: #f5f5f5;
-    padding: 10px;
-    border-radius: 4px;
+    display: block;
+    width: 100%;
+    background: #f2f2f2;
+    padding: 14px 16px;
+    border-radius: 6px;
     font-size: 14px;
+    margin-top: 8px;
+    box-sizing: border-box;
+}
+
+.comment__submit {
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    background: #ff5f5f;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.error-text {
+    color: red;
+    font-size: 13px;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }

@@ -1,4 +1,4 @@
-/* ベース調整 */
+/* NOTE: 本来は common.css / sanitize.css 側で管理するのが望ましい（全ページに影響するため） */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #fff;
@@ -27,8 +27,8 @@ body {
 .form__group-title label {
     display: block;
     font-weight: bold;
-    margin-bottom: 5px;
     margin-top: 15px;
+    margin-bottom: 5px;
 }
 
 .form__group-title input {
@@ -46,6 +46,7 @@ body {
 }
 
 .form__button-register {
+    width: 100%;
     background-color: #f66;
     color: #fff;
     padding: 10px 20px;
@@ -54,7 +55,6 @@ body {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    width: 100%;
     transition: background-color 0.3s;
 }
 

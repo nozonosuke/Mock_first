@@ -4,6 +4,25 @@
 <link rel="stylesheet" href="{{ asset('css/create.css') }}">
 @endsection
 
+@section('header')
+<div class="header__center">
+    <form class="header__search">
+        <input type="text" placeholder="なにを探してますか？">
+    </form>
+</div>
+
+<div class="header__right">
+    <form action="/logout" method="post">
+        @csrf
+        <button class="header__nav-link header__nav-link--button">
+            ログアウト
+        </button>
+    </form>
+    <a href="/mypage" class="header__nav-link">マイページ</a>
+    <a href="/sell" class="header__nav-button">出品</a>
+</div>
+@endsection
+
 @section('content')
 <div class="sell-container">
 
@@ -17,11 +36,9 @@
             <h2 class="sell-section__title">商品画像</h2>
 
             <div class="image-upload">
+
                 {{-- プレビュー表示 --}}
-                <img
-                    id="image-preview"
-                    style="display:none; max-width:100%; max-height:100%; object-fit:contain;"
-                >
+                <img class="image-preview">
 
                 <label class="image-upload__button">
                     画像を選択する
@@ -33,8 +50,11 @@
                     >
                 </label>
             </div>
-        </div>
 
+            @error('image')
+                <p class="error-text">{{ $message }}</p>
+            @enderror
+        </div>
 
         {{-- 商品の詳細 --}}
         <div class="sell-section">
@@ -58,21 +78,27 @@
                         </label>
                     @endforeach
                 </div>
-            </div>
 
+                @error('categories')
+                    <p class="error-text">{{ $message }}</p>
+                @enderror
+            </div>
 
             {{-- 商品の状態 --}}
             <div class="form-group">
-                <label>商品の状態</label>
-                <select name="condition" class="select-box">
+                <label for="condition">商品の状態</label>
+                <select name="condition" id="condition" class="select-box">
                     <option value="">選択してください</option>
                     <option value="良好">良好</option>
                     <option value="目立った傷や汚れなし">目立った傷や汚れなし</option>
                     <option value="やや傷や汚れあり">やや傷や汚れあり</option>
                     <option value="傷や汚れあり">傷や汚れあり</option>
                 </select>
-            </div>
 
+                @error('condition')
+                    <p class="error-text">{{ $message }}</p>
+                @enderror
+            </div>
         </div>
 
         {{-- 商品名と説明 --}}
@@ -80,29 +106,40 @@
             <h2 class="sell-section__title">商品名と説明</h2>
 
             <div class="form-group">
-                <label>商品名</label>
-                <input type="text" name="name" class="form-input" value="{{ old('name') }}">
+                <label for="name">商品名</label>
+                <input id="name" type="text" name="name" class="form-input" value="{{ old('name') }}">
+
+                @error('name')
+                    <p class="error-text">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="form-group">
-                <label>ブランド名</label>
-                <input type="text" name="brand_name" class="form-input" value="{{ old('brand_name') }}">
+                <label for="brand_name">ブランド名</label>
+                <input id="brand_name" type="text" name="brand_name" class="form-input" value="{{ old('brand_name') }}">
             </div>
 
             <div class="form-group">
-                <label>商品の説明</label>
-                <textarea name="description" class="form-textarea">{{ old('description') }}</textarea>
+                <label for="description">商品の説明</label>
+                <textarea id="description" name="description" class="form-textarea">{{ old('description') }}</textarea>
+
+                @error('description')
+                    <p class="error-text">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="form-group">
-                <label>販売価格</label>
+                <label for="price">販売価格</label>
                 <div class="price-input">
                     <span>¥</span>
-                    <input type="number" name="price" class="form-input" value="{{ old('price') }}">
+                    <input id="price" type="number" name="price" class="form-input" value="{{ old('price') }}">
                 </div>
+
+                @error('price')
+                    <p class="error-text">{{ $message }}</p>
+                @enderror
             </div>
         </div>
-
 
         {{-- 出品ボタン --}}
         <button type="submit" class="submit-button">
@@ -114,7 +151,8 @@
 
 <script>
 function previewImage(input) {
-    const preview = document.getElementById('image-preview');
+    const preview = document.querySelector('.image-preview');
+    const button = document.querySelector('.image-upload__button');
 
     if (input.files && input.files[0]) {
         const reader = new FileReader();
@@ -122,12 +160,12 @@ function previewImage(input) {
         reader.onload = function (e) {
             preview.src = e.target.result;
             preview.style.display = 'block';
+            button.style.display = 'none';
         };
 
         reader.readAsDataURL(input.files[0]);
     }
 }
 </script>
-
 
 @endsection

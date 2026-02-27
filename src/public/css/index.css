@@ -40,7 +40,6 @@
     text-decoration: underline;
 }
 
-/* 出品ボタン */
 .header__nav-button {
     background-color: #fff;
     color: #000;
@@ -57,12 +56,15 @@
     background-color: #e0e0e0;
 }
 
-/* ログアウトボタンをリンク風に */
 .header__nav-link--button {
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
+}
+
+.header__logout-form {
+    display: inline;
 }
 
 .header__nav-link--button:hover {
@@ -103,7 +105,18 @@
 }
 
 /* 商品カード */
+.item-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.item-card:hover {
+    opacity: 0.9;
+}
+
 .item-card__image {
+    position: relative;
     width: 100%;
     aspect-ratio: 1 / 1;
     background: #eee;
@@ -121,20 +134,6 @@
 .item-card__name {
     margin-top: 8px;
     font-size: 14px;
-}
-
-.item-card {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-}
-
-.item-card:hover {
-    opacity: 0.9;
-}
-
-.item-card__image {
-    position: relative;
 }
 
 .item-card__sold {

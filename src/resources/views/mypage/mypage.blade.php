@@ -53,7 +53,7 @@
 
     {{-- 出品商品一覧 --}}
     @if ($page === 'sell')
-    <div class="items__list">
+    <div class="items__list items__list--sell">
         @forelse ($sellItems as $item)
             <div class="item-card">
                 <div class="item-card__image">
@@ -75,7 +75,7 @@
 
     {{-- 購入した商品一覧 --}}
     @if ($page === 'buy')
-    <div class="items__list">
+    <div class="items__list items__list--buy">
         @forelse ($buyItems as $purchase)
             <div class="item-card">
                 <div class="item-card__image">
@@ -98,8 +98,6 @@
         @endforelse
     </div>
     @endif
-
-
 
 </div>
 @endsection

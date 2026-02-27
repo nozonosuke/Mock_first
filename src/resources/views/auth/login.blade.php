@@ -14,15 +14,15 @@
         @csrf
         <div class="form__group">
             <div class="form__group-title">
-                <label>メールアドレス</label>
-                <input type="email" name="email" value="{{ old('email') }}" />
+                <label for="email">メールアドレス</label>
+                <input id="email" type="email" name="email" value="{{ old('email') }}" />
                     <div class="form__error">
                         @error('email')
                         {{ $message }}
                         @enderror
                     </div>
-                <label>パスワード</label>
-                <input type="password" name="password" value="{{ old('password') }}" />
+                <label for="password">パスワード</label>
+                <input id="password" type="password" name="password" />
                     <div class="form__error">
                         @error('password')
                         {{ $message }}

@@ -6,10 +6,10 @@ use Laravel\Fortify\Http\Requests\LoginRequest as FortifyLoginRequest;
 
 class LoginRequest extends FortifyLoginRequest
 {
-    /*public function authorize()
+    public function authorize()
     {
         return true;
-    }*/
+    }
     /**
      * Get the validation rules that apply to the request.
      *

@@ -4,6 +4,25 @@
 <link rel="stylesheet" href="{{ asset('css/item.css') }}">
 @endsection
 
+@section('header')
+<div class="header__center">
+    <form class="header__search">
+        <input type="text" placeholder="なにを探してますか？">
+    </form>
+</div>
+
+<div class="header__right">
+    <form action="/logout" method="post">
+        @csrf
+        <button class="header__nav-link header__nav-link--button">
+            ログアウト
+        </button>
+    </form>
+    <a href="/mypage" class="header__nav-link">マイページ</a>
+    <a href="/sell" class="header__nav-button">出品</a>
+</div>
+@endsection
+
 @section('content')
 <div class="item-detail">
 
@@ -127,7 +146,7 @@
                 <textarea class="comment__textarea" name="comment" placeholder="商品へのコメント">{{ old('comment') }}</textarea>
 
                 @error('comment')
-                    <p class="form__error">{{ $message }}</p>
+                    <p class="error-text">{{ $message }}</p>
                 @enderror
 
                 <button class="comment__submit">

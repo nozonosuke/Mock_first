@@ -24,13 +24,11 @@ class Item extends Model
         'condition',
     ];
 
-    /**出品者 */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    /**カテゴリ */
     public function categories()
     {
         return $this->belongsToMany(Category::class);
