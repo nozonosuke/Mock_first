@@ -121,12 +121,55 @@ mock_first/
 
 ## 単体テスト実行方法
 
+本アプリでは `.env.testing` を使用してテスト環境を構築しています。
+
+### ■ 1. テスト用環境変数
+
+`.env.testing` が存在し、以下のように設定されていることを確認してください。
+
+```env
+APP_ENV=testing
+
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel_db
+DB_USERNAME=laravel_user
+DB_PASSWORD=laravel_pass
+```
+### ■ 2. phpunit.xmlについて
+本リポジトリでは、phpunit.xml にDB関連の <server> 設定を記述しない構成としています。
+Laravelでは以下の順で環境変数が適用されます：
+
+phpunit.xml
+.env.testing
+.env
+
+そのため、phpunit.xml に DB_DATABASE 等を記述すると
+.env.testing の設定が上書きされる可能性があります。
+
+本プロジェクトではDB設定は .env.testing に統一しています。
+
+## ■ 3. テストの実行
+
 Dockerコンテナ内で以下を実行してください。
 
 ```bash
 docker-compose exec php bash
+php artisan config:clear
 php artisan test
 ```
+
+## ■ 4. 補足事項
+テストクラスでは RefreshDatabase を使用しているため、
+テスト実行ごとにマイグレーションが自動で実行されます。
+
+.env.testing の設定が誤っている場合、
+Unknown database エラーが発生します。
+
+テスト用DBは本番用DBとは分離してください。
+
+テストは Docker 環境下での実行を前提としています。
 ---
 
 ## 主な設計ポイント
