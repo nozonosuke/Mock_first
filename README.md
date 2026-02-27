@@ -150,7 +150,7 @@ phpunit.xml
 
 本プロジェクトではDB設定は .env.testing に統一しています。
 
-## ■ 3. テストの実行
+### ■ 3. テストの実行
 
 Dockerコンテナ内で以下を実行してください。
 
@@ -160,7 +160,7 @@ php artisan config:clear
 php artisan test
 ```
 
-## ■ 4. 補足事項
+### ■ 4. 補足事項
 -テストクラスでは RefreshDatabase を使用しているため、
 -テスト実行ごとにマイグレーションが自動で実行されます。
 
