@@ -14,7 +14,11 @@ git clone git@github.com:nozonosuke/Mock_first.git
 docker-compose up -d --build
 ```
 
-### Laravel環境構築
+### Laravel環境構築及びクローン後の初期セットアップについて
+本リポジトリをクローンした直後は、
+データベースやストレージリンクは構築されていません。
+
+必ず以下の手順を実行してください。
 ```bash
 docker-compose exec php bash
 cp .env.example .env
@@ -22,6 +26,7 @@ composer install
 php artisan key:generate
 php artisan migrate
 php artisan db:seed
+php artisan storage:link
 ```
 ---
 
