@@ -185,3 +185,14 @@ docker-compose up -d
 php artisan migrate
 php artisan db:seed
 ```
+
+### ■ 画像が表示されない場合
+
+クローン直後はシンボリックリンクが作成されていないため、
+商品画像が表示されない場合があります。
+
+以下を実行してください。
+
+```bash
+docker-compose exec php bash
+php artisan storage:link
